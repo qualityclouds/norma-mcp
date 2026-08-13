@@ -73,6 +73,16 @@ Add to `.cursor/mcp.json`:
 
 Cursor will prompt you to sign in via browser on first connection.
 
+## Lovable
+
+Lovable supports custom MCP servers as chat connectors, so Norma works with no plugin. In your project, open the connectors panel and add a custom MCP server named `Norma` with server URL `https://api.qualityclouds.ai/mcp` (HTTP transport, OAuth: your browser opens to sign in on first connection). Then send one message, and Lovable keeps it as a standing rule for the project:
+
+> From now on, for every file you create or change, run it through Norma and fix the issues it returns.
+
+One step that is not optional: paste your repository's public GitHub URL in chat so Lovable can call `link_repository`. Lovable's own git remote is a tokenised URL it will not send to a third party, so until you link, live checks work but audit registration fails.
+
+Full guide, including troubleshooting: [docs/LOVABLE.md](docs/LOVABLE.md).
+
 ## Links
 
 - Sign up: [norma.qualityclouds.com](https://norma.qualityclouds.com)
