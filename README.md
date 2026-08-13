@@ -76,7 +76,7 @@ Cursor will prompt you to sign in via browser on first connection.
 ## Links
 
 - Sign up: [norma.qualityclouds.com](https://norma.qualityclouds.com)
-- Product: [qualityclouds.ai/hub](https://qualityclouds.ai/hub)
+- Product: [qualityclouds.ai/norma](https://qualityclouds.ai/norma)
 - Community, docs and support: [github.com/qualityclouds/community](https://github.com/qualityclouds/community/discussions)
 
 Built by [Quality Clouds](https://qualityclouds.ai), the AI Code Governance platform, governing 950+ enterprise platform instances since 2017.
