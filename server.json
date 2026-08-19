@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.qualityclouds/norma",
+  "title": "Norma by Quality Clouds",
+  "description": "Deterministic AI code review, with an audit record. Governance inside the agent loop.",
+  "version": "1.0.0",
+  "websiteUrl": "https://qualityclouds.ai/norma",
+  "repository": {
+    "url": "https://github.com/qualityclouds/norma-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.qualityclouds.ai/mcp"
+    }
+  ]
+}

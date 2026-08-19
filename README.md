@@ -1,9 +1,9 @@
 <!-- mcp-name: ai.qualityclouds/norma -->
 # Norma MCP Server
 
-AI code governance rules injected into Cursor, Claude Code and other MCP clients at generation time.
+Deterministic AI code review, with an audit record. Governance inside the agent loop.
 
-Norma connects your AI development tool to a governance rule library built around the error patterns AI-generated code typically contains. When the model generates code, the rules for your detected stack are already in its context, so the output follows them from the first line.
+Norma gives your coding agent the rules for your detected stack before it writes, checks each file against them, and records the outcome. The same file and the same rules return the same verdict every time, so what you get back is a record you can show someone rather than an opinion that changes between runs.
 
 - Remote server (Streamable HTTP): `https://api.qualityclouds.ai/mcp`
 - Auth: OAuth. Sign in via browser on first connection. Permanent free tier.
