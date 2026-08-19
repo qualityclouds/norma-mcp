@@ -2,28 +2,31 @@
 
 Lovable is very good at getting you to a working app. It is not trying to tell you whether that app is safe to put in front of real users, or whether an engineering team could take it over in six months.
 
-Norma does that. It connects to Lovable as a custom MCP chat connector, checks every file against your engineering standards as the code is written, then keeps a record of what it enforced. No plugin or partnership needed: Lovable already supports custom MCP servers.
+Norma does that. It connects to Lovable as a custom MCP chat connector, checks every file against your engineering standards as the code is written, then keeps a record of what it enforced. No plugin or partnership needed: Lovable already supports custom MCP servers on every plan.
 
-Lovable generates React, Vite, TypeScript and Supabase. Norma ships 94 rules for exactly that stack. A first check on a real project tends to surface things like a Supabase service-role key in the browser bundle (the failure class behind CVE-2025-48757, which exposed data in over 170 Lovable-built apps), auth guards with inverted logic, `useEffect` loops that freeze the tab, no error boundary anywhere, and a missing Content Security Policy that blocks SOC 2 sign-off.
+Lovable generates React, Vite, TypeScript and Supabase. Norma ships 83 rules for exactly that stack, 47 of them HIGH severity. A first check on a real project tends to surface a Supabase service-role key compiled into the browser bundle, an admin client instantiated in a frontend component, auth guards with the condition inverted, `useEffect` loops that freeze the tab, no error boundary anywhere, and a missing Content Security Policy that blocks SOC 2 sign-off.
 
-**Free tier is permanent.** Unlimited enforcement in the editor, no trial clock.
+**Where this sits next to Lovable's own scans.** Lovable's Basic Scan runs on publish and lints your Row Level Security policies, your schema and your dependencies. That is the database side of the failure class behind CVE-2025-48757, and it is the right place to check it. Norma does not look at RLS policies or schema state. It looks at code, which is where the same data leaks with the policies intact: a service-role key in the bundle bypasses every policy you wrote. The two do not overlap, and you want both.
+
+**Free tier is permanent.** Not a trial, no clock. The SOLID architecture ruleset is a Pro feature; everything above is on Free.
 
 ## Setup
 
 ### 1. Add Norma as a connector
 
-In your Lovable project, open the connectors panel and connect a custom MCP server:
+In your Lovable project, open **Connectors**, go to the **All** view, scroll to the bottom, and choose the **Custom** card labeled **MCP** ("Connect your own MCP").
 
 | Field | Value |
 |---|---|
-| Name | `Norma` |
+| Server name | `Norma` |
 | Server URL | `https://api.qualityclouds.ai/mcp` |
-| Transport | HTTP |
-| Auth | OAuth. Your browser opens to sign in on first connection |
+| Authentication | **OAuth**. This is Lovable's default, so leave it as is |
+
+Click **Add & authorize**. Your browser opens to sign in.
 
 No account yet? Sign up at [norma.qualityclouds.com](https://norma.qualityclouds.com). Free, no card.
 
-Norma is a chat connector: it gives the Lovable agent context while it builds, and it is not bundled into your published app. It is personal to you.
+Norma is a chat connector: it gives the Lovable agent context while it builds, and it is not bundled into your published app. Chat connections are per user, so a teammate on the same project connects their own.
 
 ### 2. Say this once
 
@@ -46,7 +49,7 @@ That second instruction matters more than it looks. See *Keep the audit trail ho
 
 ### 3. Link your repository. This step is not optional.
 
-**Lovable's internal git remote is a tokenised URL that it will not send to a third party**, and rightly so. The consequence is that `register_applied_actions` fails with *"link a repository first"* until you hand Lovable the public URL yourself. Your live checks work fine without this, but you get no audit trail, which is half the point of using Norma.
+**Lovable's internal git remote is a tokenized URL that it will not send to a third party**, and rightly so. The consequence is that `register_applied_actions` fails with *"link a repository first"* until you hand Lovable the public URL yourself. Your live checks work fine without this, but you get no audit trail, which is half the point of using Norma.
 
 Fix it in one message. Paste your repository URL:
 
@@ -86,7 +89,7 @@ Expect the first run to be uncomfortable. That is the point of running it.
 
 ### "Link a repository first"
 
-**Symptom.** Live checks work. Then the audit registration fails, and Lovable tells you it needs the repository's public URL because its own remote is a tokenised internal one it will not send.
+**Symptom.** Live checks work. Then the audit registration fails, and Lovable tells you it needs the repository's public URL because its own remote is a tokenized internal one it will not send.
 
 **Fix.** Paste your GitHub URL in chat and ask it to link. One message, once per project. Do it at the start, because evidence from tasks you ran before linking is not recoverable.
 
@@ -103,6 +106,12 @@ Expect the first run to be uncomfortable. That is the point of running it.
 **Symptom.** The agent notes that a tool result was truncated, usually after `get_rules_for_ruleset` on one of the bigger rulesets. Lovable caps how much tool output it will hold in context.
 
 **Fix.** Do not ask it to pull every ruleset up front. Let `live_check` do the finding, since findings arrive with their own rule metadata attached, and only pull a full ruleset when you actually want to read the standards. If you need the rules in context for a specific piece of work, name the one ruleset you care about rather than asking for all of them.
+
+### `get_open_issues` looks incomplete
+
+**Symptom.** The repository has more open issues than the agent reports.
+
+**Fix.** Called with no arguments, `get_open_issues` returns the top 25 by severity, with a total count and a portal link. Ask for a specific set of files and you get the complete list for those files.
 
 ## Good to know
 

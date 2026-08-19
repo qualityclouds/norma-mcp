@@ -8,7 +8,7 @@ Norma gives your coding agent the rules for your detected stack before it writes
 - Remote server (Streamable HTTP): `https://api.qualityclouds.ai/mcp`
 - Auth: OAuth. Sign in via browser on first connection. Permanent free tier.
 - Works with Cursor, Claude Code, Lovable, Replit and any MCP-compatible client
-- Stacks covered: TypeScript, Python, Java, Node, React, Supabase and more
+- Stacks covered: TypeScript, JavaScript, Python, PHP, Node, React, Vite, Supabase, FastAPI, SQLAlchemy, Adobe Magento and more
 
 ## What it does
 
