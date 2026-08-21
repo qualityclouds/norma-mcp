@@ -25,7 +25,7 @@ The server exposes six tools:
 | `get_open_issues` | Returns the open issues from the last full scan of the linked repository, each with the context needed to fix it |
 | `register_applied_actions` | Records what was done in your compliance audit trail: rules verified compliant, violations fixed (file and lines), violations prevented during generation, and which model did the work |
 
-Every session produces a structured record of what was checked, fixed and prevented. Your repository's Production-Ready Score and full findings live in your workspace at [norma.qualityclouds.com](https://norma.qualityclouds.com).
+Every session produces a structured record of what was checked, fixed and prevented. Your repository's Production-Ready Score and full findings live in your workspace at [norma.qualityclouds.com](https://norma.qualityclouds.com/?utm_source=github&utm_medium=readme&utm_campaign=norma-mcp&utm_content=workspace).
 
 ## How it works
 
@@ -85,7 +85,7 @@ Full guide, including troubleshooting: [docs/LOVABLE.md](docs/LOVABLE.md).
 
 ## Links
 
-- Sign up: [norma.qualityclouds.com](https://norma.qualityclouds.com)
+- Sign up: [norma.qualityclouds.com](https://norma.qualityclouds.com/?utm_source=github&utm_medium=readme&utm_campaign=norma-mcp&utm_content=signup)
 - Product: [qualityclouds.ai/norma](https://qualityclouds.ai/norma)
 - Community, docs and support: [github.com/qualityclouds/community](https://github.com/qualityclouds/community/discussions)
 
