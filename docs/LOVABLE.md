@@ -24,7 +24,7 @@ In your Lovable project, open **Connectors**, go to the **All** view, scroll to 
 
 Click **Add & authorize**. Your browser opens to sign in.
 
-No account yet? Sign up at [norma.qualityclouds.com](https://norma.qualityclouds.com). Free, no card.
+No account yet? Sign up at [norma.qualityclouds.com](https://norma.qualityclouds.com/?utm_source=github&utm_medium=readme&utm_campaign=norma-mcp&utm_content=lovable-guide). Free, no card.
 
 Norma is a chat connector: it gives the Lovable agent context while it builds, and it is not bundled into your published app. Chat connections are per user, so a teammate on the same project connects their own.
 
