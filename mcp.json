@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "norma": {
+      "url": "https://api.qualityclouds.ai/mcp"
+    }
+  }
+}

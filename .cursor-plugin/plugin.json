@@ -1,0 +1,22 @@
+{
+  "name": "norma",
+  "version": "1.0.0",
+  "description": "Deterministic AI code review, with an audit record. Governance inside the agent loop.",
+  "author": {
+    "name": "Quality Clouds",
+    "email": "albert@qualityclouds.com"
+  },
+  "homepage": "https://qualityclouds.ai/norma",
+  "repository": "https://github.com/qualityclouds/norma-mcp",
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "ai-code-governance",
+    "security",
+    "compliance",
+    "audit",
+    "deterministic",
+    "quality"
+  ],
+  "logo": "assets/logo.png"
+}
