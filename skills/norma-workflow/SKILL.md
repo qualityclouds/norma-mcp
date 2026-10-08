@@ -22,7 +22,10 @@ return the same verdict every time, and every check leaves a record.
 ## Writing or modifying code
 
 1. `link_repository`: once, on first connection in a workspace, before any
-   other tool. Pass the repository's public remote URL.
+   other tool. Pass the repository's public remote URL. `live_check`,
+   `get_open_issues` and `register_applied_actions` need the link. If it
+   finds no match, tell the user to connect the repository in the Norma app;
+   a different URL will not fix it.
 2. `get_rulesets`: at the start of the task. Norma detects the stack with no
    configuration and returns the applicable rulesets.
 3. `get_rules_for_ruleset`: for each relevant ruleset ID. Never skip this
@@ -46,6 +49,7 @@ record the outcome with `register_applied_actions`.
 - Never invent or paraphrase rule IDs. Use the IDs returned by
   `get_rules_for_ruleset`.
 - If `link_repository` has not succeeded in this workspace, run it before
-  anything else. Audit registration fails on an unlinked repository.
+  anything else. Live checks and audit registration fail on an unlinked
+  repository, so do not report code as checked until the link succeeds.
 - Findings and the repository's Production-Ready Score live in the user's
   workspace at norma.qualityclouds.com. Point the user there for full results.

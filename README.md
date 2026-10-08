@@ -7,6 +7,7 @@ Norma gives your coding agent the rules for your detected stack before it writes
 
 - Remote server (Streamable HTTP): `https://api.qualityclouds.ai/mcp`
 - Auth: OAuth. Sign in via browser on first connection. Permanent free tier.
+- Requires a linked repository: `live_check` only runs once the workspace is linked to a repository your organization has connected in Norma (GitHub or Bitbucket)
 - Works with Cursor, Claude Code, Lovable, Replit and any MCP-compatible client
 - Stacks covered: TypeScript, JavaScript, Python, PHP, Node, React, Vite, Supabase, FastAPI, SQLAlchemy, Adobe Magento and more
 
@@ -18,10 +19,10 @@ The server exposes six tools:
 
 | Tool | What it does |
 |------|--------------|
-| `link_repository` | Links the current workspace to Norma. Called once, on first connection in a workspace, before any other tool |
+| `link_repository` | Links the current workspace to a repository your organization has connected in Norma. Called once, on first connection in a workspace, before any other tool. Required for `live_check`, `get_open_issues` and `register_applied_actions` |
 | `get_rulesets` | Detects your repository's tech stack, with no configuration, and returns the applicable rulesets, one per language or framework |
 | `get_rules_for_ruleset` | Returns the rules in one ruleset: each rule's ID, name, severity, impact area, description and fix guidance |
-| `live_check` | Deterministic check of one file against your organization's rules. Same file, same rules, same verdict every time. Nothing is stored |
+| `live_check` | Deterministic check of one file against your organization's rules. Same file, same rules, same verdict every time. Nothing is stored. Needs a linked repository |
 | `get_open_issues` | Returns the open issues from the last full scan of the linked repository, each with the context needed to fix it |
 | `register_applied_actions` | Records what was done in your compliance audit trail: rules verified compliant, violations fixed (file and lines), violations prevented during generation, and which model did the work |
 
@@ -31,7 +32,7 @@ Every session produces a structured record of what was checked, fixed and preven
 
 A coding agent connected to Norma follows this sequence:
 
-1. `link_repository`: first connection in each workspace, before any other call.
+1. `link_repository`: first connection in each workspace, before any other call. Until it succeeds, `live_check`, `get_open_issues` and `register_applied_actions` refuse to run.
 2. `get_rulesets`: at the start of any coding task.
 3. `get_rules_for_ruleset`: for each relevant ruleset ID; never skipped.
 4. The agent writes or modifies code, with those rules in context.
@@ -39,6 +40,16 @@ A coding agent connected to Norma follows this sequence:
 6. `register_applied_actions`: after the task, using the exact rule IDs from step 3.
 
 To work through standing issues instead of writing new code, the agent calls `get_open_issues` and fixes the violations from the repository's last full scan.
+
+## Before you start: connect your repository
+
+Live checks only run on a linked repository, and `link_repository` can only link a repository your organization has already connected in Norma. Before you install the server in any client:
+
+1. Sign in at [norma.qualityclouds.com](https://norma.qualityclouds.com/?utm_source=github&utm_medium=readme&utm_campaign=norma-mcp&utm_content=connect-repo). Free to start, no credit card.
+2. Connect the repository through the GitHub or Bitbucket integration.
+3. Make sure your local clone's remote (`git remote get-url origin`) points at that same repository.
+
+If `link_repository` finds no match, the repository is not connected in Norma yet. Passing a different URL will not fix it; connect the repository in the app and link again.
 
 ## Try it in 5 minutes (Claude Code)
 
@@ -54,8 +65,12 @@ claude mcp add --scope user --transport http norma https://api.qualityclouds.ai/
 claude mcp list
 ```
 
-3. On first use, your browser opens to sign in. Free to start, no credit card.
-4. Open a session in any repo and ask Claude Code to review a file against your coding standards. It will link the repository, fetch the rules for your stack, and register the results back to your workspace.
+3. On first use, your browser opens to sign in.
+4. Open a session in the clone of a repository you connected in Norma and link it:
+
+> Link this repository to Norma.
+
+5. Ask Claude Code to review a file against your coding standards. It will fetch the rules for your stack, live check the file, and register the results back to your workspace.
 
 ## Cursor
 
@@ -71,7 +86,7 @@ Add to `.cursor/mcp.json`:
 }
 ```
 
-Cursor will prompt you to sign in via browser on first connection.
+Cursor will prompt you to sign in via browser on first connection. Then open the clone of a repository you connected in Norma and ask the agent to link it before the first check.
 
 ## Lovable
 
@@ -79,7 +94,7 @@ Lovable supports custom MCP servers as chat connectors, so Norma works with no p
 
 > From now on, for every file you create or change, run it through Norma and fix the issues it returns.
 
-One step that is not optional: paste your repository's public GitHub URL in chat so Lovable can call `link_repository`. Lovable's own git remote is a tokenised URL it will not send to a third party, so until you link, live checks work but audit registration fails.
+One step that is not optional: connect the project's GitHub repository in Norma, then paste its public GitHub URL in chat so Lovable can call `link_repository`. Lovable's own git remote is a tokenised URL it will not send to a third party, so until you link, live checks do not run and nothing reaches your audit trail.
 
 Full guide, including troubleshooting: [docs/LOVABLE.md](docs/LOVABLE.md).
 
