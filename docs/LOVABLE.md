@@ -49,19 +49,21 @@ That second instruction matters more than it looks. See *Keep the audit trail ho
 
 ### 3. Link your repository. This step is not optional.
 
-**Lovable's internal git remote is a tokenized URL that it will not send to a third party**, and rightly so. The consequence is that `live_check` and `register_applied_actions` fail with *"link a repository first"* until you hand Lovable the public URL yourself. Without a link, Norma checks nothing and records nothing.
+**Lovable's internal git remote is a tokenized URL that it will not send to a third party**, and rightly so. Live checks only run on a repository linked in your Norma account, so this takes two steps.
 
-Before you link, connect the project's GitHub repository in [norma.qualityclouds.com](https://norma.qualityclouds.com/?utm_source=github&utm_medium=readme&utm_campaign=norma-mcp&utm_content=lovable-guide). `link_repository` only binds repositories your organization has already connected there.
+First, link the project's GitHub repository at [norma.qualityclouds.com](https://norma.qualityclouds.com/?utm_source=github&utm_medium=readme&utm_campaign=norma-mcp&utm_content=lovable-guide) through the GitHub integration. Your code is never stored in your Norma account: linking tells Norma which repository a check belongs to, and nothing more.
+
+Second, give Lovable the public URL, so it can tell Norma which repository it is working on. Until it has it, `live_check` and `register_applied_actions` fail with *"link a repository first"*, and Norma checks nothing and records nothing.
 
 Fix it in one message. Paste your repository URL:
 
 > this is my github repo for this app: https://github.com/yourname/yourrepo
 
-Lovable calls `link_repository` and confirms the repository and branch. Live checks and audit registration work from then on, and `get_open_issues` starts returning the standing violations from your last full scan.
+Lovable confirms the repository. Live checks and audit registration work from then on, and `get_open_issues` starts returning the standing violations from your last full scan.
 
 Do this at the start of the project, before the first task, or that task goes unchecked.
 
-No GitHub connection at all yet? Connect the Lovable project to GitHub first, then connect that repository in Norma. Live checks need a linked repository.
+No GitHub connection at all yet? Connect the Lovable project to GitHub first, then link that repository in Norma. Live checks need a linked repository.
 
 ## What changes in your build loop
 
@@ -93,7 +95,7 @@ Expect the first run to be uncomfortable. That is the point of running it.
 
 **Symptom.** The first live check or audit registration fails, and Lovable tells you it needs the repository's public URL because its own remote is a tokenized internal one it will not send.
 
-**Fix.** Paste your GitHub URL in chat and ask it to link. One message, once per project. Do it at the start, because files written before linking were never checked. If linking finds no match, connect the repository in the Norma app first, then ask again.
+**Fix.** Check that the repository is linked in your Norma account, then paste its public GitHub URL in chat. One message, once per project. Do it at the start, because files written before linking were never checked.
 
 ### Keep the audit trail honest
 
