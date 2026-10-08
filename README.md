@@ -3,15 +3,15 @@
 
 # Norma by Quality Clouds: MCP Server
 
-Deterministic AI code review, with an audit record. Governance inside the agent loop.
+Norma by Quality Clouds checks AI-written code against your rules as it is written, and keeps a record of what it found.
 
-Norma by Quality Clouds gives your coding agent the rules for your detected stack before it writes, checks each file against them, and records the outcome. The same file and the same rules return the same verdict every time, so what you get back is a record you can show someone rather than an opinion that changes between runs.
+Norma gives your coding agent the rules for your detected stack before it writes, checks each file against them, and records the outcome. The same file and the same rules return the same verdict every time, so what you get back is a record you can show someone rather than an opinion that changes between runs.
 
 - Remote server (Streamable HTTP): `https://api.qualityclouds.ai/mcp`
 - Auth: OAuth. Sign in via browser on first connection. Permanent free tier.
 - Requires a linked repository: `live_check` only runs on a repository linked in your Norma account (GitHub or Bitbucket). Your code is never stored there
 - Works with Cursor, Claude Code, Lovable, Replit and any MCP-compatible client
-- Stacks covered: TypeScript, JavaScript, Python, PHP, Node, React, Vite, Supabase, FastAPI, SQLAlchemy, Adobe Magento and more
+- Stacks covered: TypeScript, JavaScript, Python, PHP, Dart and Flutter, Node, React, Vite, Supabase, FastAPI, SQLAlchemy, Adobe Magento and more
 
 ## What it does
 
