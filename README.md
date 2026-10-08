@@ -1,9 +1,11 @@
 <!-- mcp-name: ai.qualityclouds/norma -->
-# Norma MCP Server
+<p align="center"><img src="assets/logo.png" alt="Norma by Quality Clouds" width="120"></p>
+
+# Norma by Quality Clouds: MCP Server
 
 Deterministic AI code review, with an audit record. Governance inside the agent loop.
 
-Norma gives your coding agent the rules for your detected stack before it writes, checks each file against them, and records the outcome. The same file and the same rules return the same verdict every time, so what you get back is a record you can show someone rather than an opinion that changes between runs.
+Norma by Quality Clouds gives your coding agent the rules for your detected stack before it writes, checks each file against them, and records the outcome. The same file and the same rules return the same verdict every time, so what you get back is a record you can show someone rather than an opinion that changes between runs.
 
 - Remote server (Streamable HTTP): `https://api.qualityclouds.ai/mcp`
 - Auth: OAuth. Sign in via browser on first connection. Permanent free tier.
