@@ -1,7 +1,7 @@
 {
   "name": "norma",
   "version": "1.0.0",
-  "description": "Deterministic AI code review, with an audit record. Governance inside the agent loop.",
+  "description": "Checks AI-written code against your rules as it is written, and keeps a record of what it found.",
   "author": {
     "name": "Quality Clouds",
     "email": "albert@qualityclouds.com"
