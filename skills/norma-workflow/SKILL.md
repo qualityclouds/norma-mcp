@@ -21,17 +21,20 @@ return the same verdict every time, and every check leaves a record.
 
 ## Writing or modifying code
 
-1. `link_repository`: once, on first connection in a workspace, before any
-   other tool. Pass the repository's public remote URL.
-2. `get_rulesets`: at the start of the task. Norma detects the stack with no
+Before the first check, the repository must be linked in the user's Norma
+account (GitHub or Bitbucket integration at norma.qualityclouds.com).
+`live_check`, `get_open_issues` and `register_applied_actions` only run on a
+linked repository. Pass the repository's public remote URL with each call.
+
+1. `get_rulesets`: at the start of the task. Norma detects the stack with no
    configuration and returns the applicable rulesets.
-3. `get_rules_for_ruleset`: for each relevant ruleset ID. Never skip this
+2. `get_rules_for_ruleset`: for each relevant ruleset ID. Never skip this
    step. The rules must be in context before you write.
-4. Write or modify the code with those rules in context.
-5. `live_check`: after each file is created or modified, before moving on.
+3. Write or modify the code with those rules in context.
+4. `live_check`: after each file is created or modified, before moving on.
    Fix what it returns and re-check until the file passes.
-6. `register_applied_actions`: after the task, using the exact rule IDs from
-   step 3. Record rules verified compliant, violations fixed (file and lines),
+5. `register_applied_actions`: after the task, using the exact rule IDs from
+   step 2. Record rules verified compliant, violations fixed (file and lines),
    violations prevented during generation, and which model did the work.
 
 ## Working through standing issues
@@ -45,7 +48,9 @@ record the outcome with `register_applied_actions`.
 - Never claim a file passes without a `live_check` result that says so.
 - Never invent or paraphrase rule IDs. Use the IDs returned by
   `get_rules_for_ruleset`.
-- If `link_repository` has not succeeded in this workspace, run it before
-  anything else. Audit registration fails on an unlinked repository.
+- If a call reports the repository isn't linked, stop and tell the user to
+  link it in their Norma account. Do not report code as checked until a
+  `live_check` on the linked repository says so. The user's code is never
+  stored in their Norma account.
 - Findings and the repository's Production-Ready Score live in the user's
   workspace at norma.qualityclouds.com. Point the user there for full results.
