@@ -80,7 +80,11 @@ Cursor will prompt you to sign in via browser on first connection. As with Claud
 
 ## Devin
 
-This repository is also a Devin plugin. It adds the Norma MCP server and the `norma-workflow` skill to your Devin sessions.
+This repository is also a Devin plugin. It adds the Norma MCP server and three skills to your Devin sessions:
+
+- `norma-workflow`: rules before writing, a check of each file, and the outcome on the audit trail.
+- `norma-check-before-commit`: checks the changed files before each commit or pull request, even when nobody asked for a check.
+- `norma-quality-gate-failed`: fixes the code when "Norma Quality Gates" fails on a pull request, without depending on the pull request comments.
 
 1. Link the repository Devin works on in your Norma account (step 1 of the 5-minute guide).
 2. In Devin, open **Customize → Plugins → Add plugin → From repository** and enter `qualityclouds/norma-mcp`.
