@@ -10,7 +10,7 @@ Norma gives your coding agent the rules for your detected stack before it writes
 - Remote server (Streamable HTTP): `https://api.qualityclouds.ai/mcp`
 - Auth: OAuth. Sign in via browser on first connection. Permanent free tier.
 - Requires a linked repository: `live_check` only runs on a repository linked in your Norma account (GitHub or Bitbucket). Your code is never stored there
-- Works with Cursor, Claude Code, Lovable, Replit and any MCP-compatible client
+- Works with Cursor, Claude Code, Devin, Lovable, Replit and any MCP-compatible client
 - Stacks covered: TypeScript, JavaScript, Python, PHP, Dart and Flutter, Node, React, Vite, Supabase, FastAPI, SQLAlchemy, Adobe Magento and more
 
 ## What it does
@@ -77,6 +77,18 @@ Add to `.cursor/mcp.json`:
 ```
 
 Cursor will prompt you to sign in via browser on first connection. As with Claude Code, link the repository in your Norma account first (step 1 of the 5-minute guide), then open your local clone of it.
+
+## Devin
+
+This repository is also a Devin plugin. It adds the Norma MCP server and the `norma-workflow` skill to your Devin sessions.
+
+1. Link the repository Devin works on in your Norma account (step 1 of the 5-minute guide).
+2. In Devin, open **Customize → Plugins → Add plugin → From repository** and enter `qualityclouds/norma-mcp`.
+3. Open **Customize → MCPs**, select `norma` and choose **Connect**. Your browser opens to sign in to Norma.
+
+With the Devin CLI, run `devin plugins install qualityclouds/norma-mcp`, then `devin mcp login norma`.
+
+Norma Quality Gates on pull requests: by default, Devin acts only on review comments from its own bot. For Devin to fix the findings that the Norma Quality Gate posts on its GitHub pull requests, a Devin organization admin adds `norma-by-quality-clouds[bot]` in **Settings → Devin → Pull requests → Responding to bots**. A plugin cannot change this setting.
 
 ## Lovable
 
