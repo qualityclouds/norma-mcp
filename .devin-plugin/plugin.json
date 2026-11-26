@@ -1,0 +1,19 @@
+{
+  "name": "norma",
+  "displayName": "Norma",
+  "description": "Checks AI-written code against your rules as it is written, and keeps a record of what it found.",
+  "shortDescription": "AI code governance with an audit record",
+  "homepage": "https://qualityclouds.ai/norma",
+  "repository": "https://github.com/qualityclouds/norma-mcp",
+  "logo": "assets/logo.png",
+  "keywords": [
+    "code-review",
+    "ai-code-governance",
+    "security",
+    "compliance",
+    "audit",
+    "deterministic",
+    "quality"
+  ],
+  "mcpServers": "./mcp.json"
+}
